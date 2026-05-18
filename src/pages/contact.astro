@@ -1,0 +1,29 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>
+				Got a project in mind?
+			</h1>
+			<h2>
+				Let's talk about it!
+			</h2>
+			<p>
+				You can reach me on <a href="https://www.linkedin.com/company/the-software-bakery">LinkedIn</a> by dropping me a message. 
+			</p>
+			<p>
+				Or feel free to send me an <a href="mailto:hello@bakes.software">email</a>.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>	

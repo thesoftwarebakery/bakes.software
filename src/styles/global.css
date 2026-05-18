@@ -5,38 +5,22 @@
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
+	--accent: #4d6aff;
+	--accent-dark: #8fa3ff;
 	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--gray: 160, 168, 185;
+	--gray-light: 50, 50, 55;
+	--gray-dark: 220, 222, 228;
 	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+		0 2px 6px rgba(0, 0, 0, 50%), 0 8px 24px rgba(0, 0, 0, 40%),
+		0 16px 32px rgba(0, 0, 0, 40%);
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: "Noto Sans", sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
+	background: #000;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
@@ -44,7 +28,7 @@ body {
 	line-height: 1.7;
 }
 main {
-	width: 720px;
+	width: 800px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
@@ -56,14 +40,15 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: #fff;
 	line-height: 1.2;
 }
 h1 {
-	font-size: 3.052em;
+	font-size: 2.052em;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 1.441em;
+	font-family: "Noto Serif";
 }
 h3 {
 	font-size: 1.953em;
@@ -79,10 +64,10 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: var(--accent-dark);
 }
 a:hover {
-	color: var(--accent);
+	color: #fff;
 }
 p {
 	margin-bottom: 1em;
@@ -109,6 +94,8 @@ code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
 	border-radius: 2px;
+	font-family: "Noto Sans Mono", monospace;
+	color: rgb(var(--gray-dark));
 }
 pre {
 	padding: 1.5em;
@@ -116,6 +103,7 @@ pre {
 }
 pre > code {
 	all: unset;
+	font-family: "Noto Sans Mono", monospace;
 }
 blockquote {
 	border-left: 4px solid var(--accent);
@@ -126,6 +114,7 @@ blockquote {
 hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
+	opacity: 0.4;
 }
 @media (max-width: 720px) {
 	body {
