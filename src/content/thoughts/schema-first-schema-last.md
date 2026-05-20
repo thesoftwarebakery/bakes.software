@@ -2,7 +2,7 @@
 title: "Schema-First, Schema-Last"
 description: "Musings on the importance of contract enforcement at the server level"
 pubDate: "May 17 2026"
-heroImage: "/blog-placeholder-3.jpg"
+heroImage: "/schema-first-schema-last.jpg"
 ---
 
 I've long been an advocate of schema-driven design; the writing of a schema (whether it be an OpenAPI schema or anything of the ilk) as part of the scoping phase of work.
