@@ -1,6 +1,6 @@
 ---
-title: "The Contract Goes Both Ways"
-description: "On the importance of contract enforcement at the server level"
+title: "Schema-First, Schema-Last"
+description: "Musings on the importance of contract enforcement at the server level"
 pubDate: "May 17 2026"
 heroImage: "/blog-placeholder-3.jpg"
 ---
@@ -22,13 +22,13 @@ The last point on this list I believe is perhaps the hardest-landing. From a bus
 
 The schema is a contract. The analogy works across contexts: in a business sense, imagine if a supplier told you that you'd get a contract to sign _after_ the work has been completed. Sure, they might give you an explanation of the work to be undertaken, but there's nothing binding about an explanation.
 
-## The Tooling Earns Its Keep
+## The Tooling Ecosystem
 
 One of the under-appreciated wins of a well-written schema is that the rest of the ecosystem follows from it almost for free. Type definitions and client SDKs for most major languages can be generated from an OpenAPI document: [Hey API](https://heyapi.dev/), [openapi-generator](https://github.com/OpenAPITools/openapi-generator) and [oapi-codegen](https://github.com/oapi-codegen/oapi-codegen) are all solid options depending on your stack. Documentation sites can be generated and kept in sync automatically with tools like [Redocly](https://redocly.com/), [Scalar](https://scalar.com/) or [Fern](https://buildwithfern.com/). Mock servers, invaluable for the "consumers can build before the functionality exists" benefit I described earlier, fall out of the same schema via tools like [Prism](https://stoplight.io/open-source/prism) or [Mockoon](https://mockoon.com/).
 
 This compounds the argument for schema-first. The schema isn't just a contract; it's a source of artefacts that your consumers actually depend on. Which brings me neatly onto my next point:
 
-## Self-validation is Table Stakes
+## Self-Validation is Non-Negotiable
 
 This, I fear, is where my opinion gets slightly controversial.
 
@@ -58,7 +58,7 @@ If you're finding that your endpoint definition is becoming too complex, I would
 
 > But this is just defensive programming
 
-It isn't. Defensive programming is what you do when you don't trust your inputs. Self-validation is what you do when you take your own outputs seriously enough to enforce them. Your language already does this for you inside a single process (Rust won't let you return the wrong type from a function) but at the service boundary, the type system stops checking. The schema is how you put it back.
+It isn't. Defensive programming is what you do when you don't trust your inputs. Self-validation is what you do when you take your own outputs seriously enough to enforce them. Your language may already do this for you at process-level (for example, Rust won't let you return the wrong type from a function) but at the service boundary, the type system stops checking. The schema is how you put it back.
 
 ## A Note on Adjacent Protocols 
 
