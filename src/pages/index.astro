@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { SEO } from 'astro-seo';
+
+const logo = new URL("/the-software-bakery.png", Astro.url);
 ---
 
 <!doctype html>
@@ -19,6 +21,7 @@ import { SEO } from 'astro-seo';
 						title: SITE_TITLE,
 						type: "website",
 						description: SITE_DESCRIPTION,
+						image: logo
 					},
 				}}
 		/>
