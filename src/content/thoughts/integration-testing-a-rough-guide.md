@@ -1,7 +1,7 @@
 ---
 title: "Integration testing: a rough guide"
 description: "A practical approach to making sure your thing works correctly with the other thing"
-pubDate: "June 11 2026"
+pubDate: "June 24 2026"
 heroImage: "/integration-testing-a-rough-guide.jpg"
 ---
 
@@ -12,6 +12,8 @@ This post isn't going to debate the definition. The thing those examples have in
 What follows is a walkthrough of an approach that handles it relatively cheaply: [testcontainers](https://testcontainers.com/) for the stateful dependencies you genuinely want to exercise, request-level interception for outbound HTTP, everything else mocked at a sensible boundary, and the whole lot running in-process. The examples are TypeScript with OpenAPI-generated clients, but nothing about the underlying approach is specific to that. Testcontainers exists in most languages. [MSW](https://mswjs.io/) has equivalents in most languages. The principles are language-agnostic.
 
 The goal: tests that ensure CI runs smoothly and the feedback loop is fast, which are focused enough to actually catch bugs, and strike a balance between power and simplicity. The latter also happens to makes them pleasant to write, rather than a chore. In theory, this makes tests like this dual purpose: both a CI gate and a valuable development tool.
+
+If you'd like to skip the explanation and go straight to a demonstration of these concepts in practice, there's a [companion repository](https://github.com/thesoftwarebakery/integration-testing-a-rough-guide) which does just that.
 
 ## The Setup
 
@@ -44,6 +46,8 @@ packages/
 ```
 
 Each service ships its own SDK package alongside it. The SDK contains the generated client, factories for constructing valid responses in tests, and a set of default MSW handlers that return reasonable defaults. When service A calls service B, it imports `service-b-sdk` and uses the client. When service A's tests need to simulate service B's responses, they import the factories and handlers from the same package.
+
+Generating the factories, types and SDKs should be an integral part of the build tooling. In a Typescript world, Nx supports this with its `dependsOn` syntax, but pretty much any build tool you choose will have the capacity to set up build tool chaining in a similar way. For bonus points, ensure that code generation happens _before_ your project is built - that way you can use a service's types generated from its schema in its code.
 
 The factories are the part that represent the data in flight. A typed factory like:
 
@@ -154,3 +158,4 @@ A few other gotchas worth knowing:
 
 The whole approach is underpinned by three principals: mock at the service boundary, do it in-process, and don't simulate things outside of your control. Once the basic structure is in place, you get fast tests, granular assertions, and a feedback loop that makes development feel less like a tax. There is a setup cost, but it's paid once, and the result is a testing setup that scales with your application.
 
+For a demonstration of this in practice, see [the companion GitHub repository](https://github.com/thesoftwarebakery/integration-testing-a-rough-guide)
