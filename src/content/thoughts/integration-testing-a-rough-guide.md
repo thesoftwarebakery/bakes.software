@@ -1,7 +1,7 @@
 ---
 title: "Integration Testing: A Rough Guide"
 description: "A practical approach to making sure your thing works correctly with the other thing"
-pubDate: "June 24 2026"
+pubDate: "June 25 2026"
 heroImage: "/integration-testing-a-rough-guide.jpg"
 ---
 
