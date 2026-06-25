@@ -4,14 +4,31 @@ interface Props {
 }
 
 const { date } = Astro.props;
+
+function getUKDateWithSuffix(dateObj) {
+  // 1. Get the parts
+  const day = dateObj.getDate();
+  const month = dateObj.toLocaleDateString('en-GB', { month: 'long' });
+  const year = dateObj.getFullYear();
+
+  // 2. Determine the correct ordinal suffix
+  const rules = new Intl.PluralRules('en-GB', { type: 'ordinal' });
+  const rule = rules.select(day);
+  const suffixes = {
+    one: 'st',
+    two: 'nd',
+    few: 'rd',
+    other: 'th'
+  };
+  const suffix = suffixes[rule];
+
+  // 3. Assemble the string
+  return `${day}${suffix} ${month} ${year}`;
+}
 ---
 
 <time datetime={date.toISOString()}>
 	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
+		getUKDateWithSuffix(date)
 	}
 </time>
